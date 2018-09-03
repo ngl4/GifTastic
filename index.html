@@ -10,7 +10,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <!-- jQuery CDN -->
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <!-- Inline CSS -->
+    <style>
+        button {
+
+            margin: 10px;
+        }
+    
+    </style>
 </head>
 
 <body>
@@ -38,10 +47,13 @@
                 <div id="search-gif">
 
                     <form action="#">
-                        Add an adjective:<br>
-                        <input type="text" name="adjective"><br><br>
-                        <input type="submit" value="Submit">
-                      </form>
+                        Add an adjective:
+                        <br>
+                        <input type="text" id="adj-value" name="adjective">
+                        <br>
+                        <br>
+                        <input type="submit" id="add-adj" value="Submit">
+                    </form>
 
                 </div>
             </div>
@@ -51,6 +63,9 @@
 
 
     </div>
+
+    <!-- app.js -->
+    <script src="assets/javascript/app.js"></script>
 
 </body>
 
