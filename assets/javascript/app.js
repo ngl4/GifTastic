@@ -1,10 +1,16 @@
 
 // Add your own API key between the ""
 //var APIKey = "qJpvZJ0Hc1vfwfvut2JeN4VkhNWUPGQX";
-//var searchTerm = $("#form-value").val().trim();
+//var searchValue = $("#adj-value").val().trim();
  // URL to query the database
-//var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm +"&limit=10&rating="+"&api_key=" + APIKey;
-
+//var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchValue +"&limit=10&rating="+"&api_key=" + APIKey;
+//
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+//   }).then(function(response) {
+//     
+//   });
 
 //There will be some buttons on the page around 4. 
 //Once the page is done loading 
@@ -16,4 +22,39 @@
 //And the submit button is clicked 
 //a new button is added to the gif-wordlist after the forth button 
 //when you click on the new button, it will display 10 gifs in regards to the button
+
+
+//array of adjectives
+var adjectives = ["happy", "romantic", "sad", "fabulous"];
+
+
+function renderButtons() {
+
+    $("#gif-wordlist").empty();
+
+    for (var i=0; i < adjectives.length; i++) {
+
+        var newButton = $("<button>");
+        newButton.addClass("adjective");
+        newButton.attr("data-name", adjectives[i]);
+        newButton.text(adjectives[i]);
+        $("#gif-wordlist").append(newButton);
+        
+    }
+}
+
+renderButtons();
+
+$("#add-adj").on("click", function(event) {
+
+    //user can either click on this button or press enter key
+    event.preventDefault();
+
+    var searchValue = $("#adj-value").val().trim();
+
+    adjectives.push(searchValue);
+
+    renderButtons();
+
+});
 
