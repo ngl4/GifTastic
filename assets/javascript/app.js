@@ -1,7 +1,3 @@
-//TODO: 
-//when you click on the gif, it will move and
-//when you click again, it will stop moving
-//when you click on the new button, page refresh and it will display 10 gifs in regards to the button
 
 //array of adjectives
 var adjectives = ["happy", "romantic", "sad", "fabulous"];
@@ -10,7 +6,11 @@ var adjectives = ["happy", "romantic", "sad", "fabulous"];
 function displayGif() {
   // Add your own API key between the ""
   var APIKey = "qJpvZJ0Hc1vfwfvut2JeN4VkhNWUPGQX";
+
   var searchValue = $(this).attr("data-name");
+  
+  console.log($(this));
+
   var queryURL =
     "https://api.giphy.com/v1/gifs/search?q=" +
     searchValue +
@@ -18,11 +18,15 @@ function displayGif() {
     "&api_key=" +
     APIKey;
 
+    console.log(queryURL);
+
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
     console.log(response);
+
+    $("#display-gif").empty();
 
     for (var i=0; i < (response.data).length; i++) {
 
@@ -38,16 +42,30 @@ function displayGif() {
     gifDiv.append(itemOne); 
 
 
-    //Gif : Images  //TODO: Not sure why it is not able to display!!!!*
+    //Gif : Images  
 
-    var gifImgURL = response.data[i].url;
+    var gifImgURL = response.data[i].images.fixed_height_still.url;
 
-    var itemTwo = $("<img>").attr("src", gifImgURL);
+    var animatedImg = response.data[i].images.fixed_height.url;
+
+    var image = $("<img>");
+
+    var itemTwo = image.attr("src", gifImgURL);
+
+    image.attr("data-animate", animatedImg);
+
+    image.attr("data-state", "still");
+
+    image.attr("data-still", gifImgURL);
+
+    image.addClass("animatedImg");
+
+    console.log(itemTwo);
 
     gifDiv.append(itemTwo); 
 
     //Display all the above to display-gif
-    $("#display-gif").append(gifDiv);
+    $("#display-gif").prepend(gifDiv);
 
     }
   });
@@ -68,6 +86,7 @@ function renderButtons() {
 
 renderButtons();
 
+//The submit button
 $("#add-adj").on("click", function(event) {
   //user can either click on this button or press enter key
   event.preventDefault();
@@ -82,12 +101,40 @@ $("#add-adj").on("click", function(event) {
   } else {
     adjectives.push(searchValue);
     //$("#reytype-msg").hide();
-    $("#reytype-msg").text("");
-    //TODO: Get rid of the reytpe message when a new adjective is pushed up*
+    $("#retype-msg").text("");
+    //fix syntax issue for retype-msg
   }
 
   renderButtons();
 });
 
 $(document).on("click", ".adjective", displayGif);
-//TODO: Refresh the page to the new adjective and remove all the old images*
+
+$(document).on("click", ".animatedImg", function(){
+
+        var state = $(this).attr("data-state");
+
+        var animatedImgURL = $(this).attr("data-animate");
+
+        var stillImgURL = $(this).attr("data-still");
+        
+        console.log(randomValue);
+
+        console.log($(this));
+
+        console.log(state);
+
+        console.log(animatedImgURL);
+
+        
+        if (state === "still") {
+
+            $(this).attr("src", animatedImgURL);
+            $(this).attr("data-state", "animate");
+        }else {
+
+            $(this).attr("src", stillImgURL);
+            $(this).attr("data-state","still");
+        }
+
+});
