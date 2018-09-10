@@ -2,13 +2,18 @@
 //array of adjectives
 var adjectives = ["happy", "romantic", "sad", "fabulous"];
 
+//Input Value 
+var searchValue = $("#adj-value")
+.val()
+.trim();
+
 // Generic function for capturing the gif info from the data-attribute
 function displayGif() {
   // Add your own API key between the ""
   var APIKey = "qJpvZJ0Hc1vfwfvut2JeN4VkhNWUPGQX";
 
   var searchValue = $(this).attr("data-name");
-  
+
   console.log($(this));
 
   var queryURL =
@@ -44,19 +49,19 @@ function displayGif() {
 
     //Gif : Images  
 
-    var gifImgURL = response.data[i].images.fixed_height_still.url;
+    var stillImgURL = response.data[i].images.fixed_height_still.url;
 
-    var animatedImg = response.data[i].images.fixed_height.url;
+    var animatedImgURL = response.data[i].images.fixed_height.url;
 
     var image = $("<img>");
 
-    var itemTwo = image.attr("src", gifImgURL);
+    var itemTwo = image.attr("src", stillImgURL);
 
-    image.attr("data-animate", animatedImg);
+    image.attr("data-animate", animatedImgURL);
 
     image.attr("data-state", "still");
 
-    image.attr("data-still", gifImgURL);
+    image.attr("data-still", stillImgURL);
 
     image.addClass("animatedImg");
 
@@ -66,6 +71,7 @@ function displayGif() {
 
     //Display all the above to display-gif
     $("#display-gif").prepend(gifDiv);
+    $("#display-text").text(searchValue.toUpperCase());
 
     }
   });
@@ -77,7 +83,7 @@ function renderButtons() {
 
   for (var i = 0; i < adjectives.length; i++) {
     var newButton = $("<button>");
-    newButton.addClass("adjective");
+    newButton.addClass("adjective btn btn-info btn-lg");
     newButton.attr("data-name", adjectives[i]);
     newButton.text(adjectives[i]);
     $("#gif-wordlist").append(newButton);
@@ -91,16 +97,11 @@ $("#add-adj").on("click", function(event) {
   //user can either click on this button or press enter key
   event.preventDefault();
 
-  var searchValue = $("#adj-value")
-    .val()
-    .trim();
-
   if (adjectives.indexOf(searchValue) > -1) {
     $("#adj-value").empty();
     $("#retype-msg").text("You have already entered this adjective!");
   } else {
     adjectives.push(searchValue);
-    //$("#reytype-msg").hide();
     $("#retype-msg").text("");
     //fix syntax issue for retype-msg
   }
@@ -117,8 +118,6 @@ $(document).on("click", ".animatedImg", function(){
         var animatedImgURL = $(this).attr("data-animate");
 
         var stillImgURL = $(this).attr("data-still");
-        
-        console.log(randomValue);
 
         console.log($(this));
 

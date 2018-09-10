@@ -6,57 +6,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaijaan" rel="stylesheet">
     <!-- Bootstrap CDN-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
+
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <!-- Inline CSS -->
     <style>
         button {
- 
+
             margin: 10px;
         }
-    
+
+        header {
+
+            font-family: 'Baloo Bhaijaan', cursive;
+            font-size: 2em;
+        }
+
+        .bg-color {
+
+            background-color: #FBE46F;
+        }
+
+        .inner-text-o {
+
+            color: #366B8E;
+        }
+
+        .inner-text-i {
+
+            color: #366B8E;
+        }
+
+        .gif {
+
+            margin: 10px;
+        }
     </style>
 </head>
 
 <body>
 
+    <div>
+        <div class="row jumbotron bg-color">
+
+            <div class="col-md-12 text-center text-danger">
+
+                <header>Em<span class="inner-text-o">0</span>ti<span class="inner-text-o">o</span>nal G<span class="inner-text-i">i</span>fTastic<span class="inner-text-i">!</span>
+                </header>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
     <div class="container">
+
+
+        <div class="jumbotron bg-white">
+            <h1 class="display-4 text-center">How are you feeling today?</h1>
+            <form action="#" class="text-center">
+                <input type="text" id="adj-value" name="adjective">
+                <br>
+                <br>
+                <input type="submit" id="add-adj" value="Submit" class="btn btn-outline-secondary btn-lg">
+                <div id="retype-msg" class="text-danger"></div>
+            </form>
+        </div>
 
         <div class="row">
 
             <div class="col-md-12">
 
-                <div id="gif-wordlist"></div>
+                <div class="card mb-4">
+
+                    <div class="card-header">
+                        Feelings
+                    </div>
+
+                    <div class="card-body">
+
+                        <div id="gif-wordlist"></div>
+
+                    </div>
+
+
+                </div>
+
+
             </div>
 
         </div>
 
         <div class="row">
 
-            <div class="col-md-8">
+            <div class="col-md-12">
 
-                <div id="display-gif"></div>
-            </div>
+                <div class="card">
+                    <div class="card-header" id="display-text"></div>
+                    <div class="card-body">
+                        <div id="display-gif" class="d-flex falign-self-center flex-wrap"></div>
+                    </div>
+                    <div class="card-footer text-muted">
 
-            <div class="col-md-4">
-
-                <div id="search-gif">
-
-                    <form action="#">
-                        Add an adjective:
-                        <br>
-                        <input type="text" id="adj-value" name="adjective">
-                        <br>
-                        <br>
-                        <input type="submit" id="add-adj" value="Submit">
-                        <div id="retype-msg" class="text-danger"></div>
-                    </form>
-
+                    </div>
                 </div>
+
+
+
+
             </div>
 
         </div>
